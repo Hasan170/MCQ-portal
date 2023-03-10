@@ -1,0 +1,67 @@
+@Route(value = "/ExamDetailsView")
+class ExamDetailsView extends VerticalLayout {
+
+    Button but1 = new Button("Start");
+    Button but2 = new Button("Start");
+
+    public ExamDetailsView() {
+
+        String ins1 = "Welcome to your online multiple-choice exam! Please read the following instructions carefully before beginning, Section 1 contains 20 questions. You will have 30 minutes to complete this section. Please read each question carefully and select the best answer from the options provided. Once you have answered a question, you will not be able to go back and change your answer.";
+        String ins2 = "Welcome to your online multiple-choice exam! Please read the following instructions carefully before beginning, Section 1 contains 20 questions. You will have 30 minutes to complete this section. Please read each question carefully and select the best answer from the options provided. Once you have answered a question, you will not be able to go back and change your answer.";
+
+        FormLayout leftForm = new FormLayout();
+        leftForm.addFormItem(new H1("DBMS Exam"), "");
+        leftForm.addFormItem(new Span("Name - Hasan Kamal"),"");
+        leftForm.addFormItem(new Span("Student ID - 2131231"),"");
+        leftForm.addFormItem(new Span("Course Code - 2131231"),"");
+        leftForm.addFormItem(new Span("Exam Duration - 2131231"),"");
+
+        //Adding Instructions
+        Details dl = new Details("Instructions", new Text(ins1));
+        dl.setOpened(true);
+        leftForm.addFormItem(dl, "");
+
+        leftForm.addFormItem(but1, "");
+        but1.addClickListener(buttonClickEvent -> {
+            UI.getCurrent().navigate("/questions");
+        });
+
+
+        FormLayout rightForm = new FormLayout();
+        rightForm.addFormItem(new H1("Java Exam"), "");
+        rightForm.addFormItem(new Span("Name - Hasan Kamal"),"");
+        rightForm.addFormItem(new Span("Student ID - 2131231"),"");
+        rightForm.addFormItem(new Span("Course Code - 2131231"),"");
+        rightForm.addFormItem(new Span("Exam Duration - 2131231"),"");
+
+        //Adding Instructions
+        Details d = new Details("Instructions", new Text(ins2));
+        d.setOpened(true);
+        rightForm.addFormItem(d, "");
+
+        rightForm.addFormItem(but2, "");
+        but2.addClickListener(buttonClickEvent -> {
+            UI.getCurrent().navigate("/questions");
+        });
+
+
+        // Create a SplitLayout to split the screen vertically
+        SplitLayout splitLayout = new SplitLayout();
+        splitLayout.addToPrimary(leftForm);
+        splitLayout.addToSecondary(rightForm);
+        splitLayout.setSplitterPosition(50);
+
+        // Create a container to center the SplitLayout
+        Div centerContainer = new Div();
+        centerContainer.addClassName("center-container");
+        centerContainer.add(splitLayout);
+
+        // Create a HorizontalLayout to place the center container in the center of the screen
+        HorizontalLayout horizontalLayout = new HorizontalLayout();
+        horizontalLayout.addClassName("horizontal-layout");
+        horizontalLayout.add(centerContainer);
+
+        // Add the horizontal layout to the view
+        add(horizontalLayout);
+    }
+}
